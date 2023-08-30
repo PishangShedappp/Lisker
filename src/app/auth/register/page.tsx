@@ -16,7 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 
 function Login() {
-    const [ user ] = useAuthState(firebase.auth())
+    const user = firebase.auth()
     const router = useRouter();
 
     const [SEmail, setSEmail] = useState("");

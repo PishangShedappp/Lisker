@@ -14,7 +14,7 @@ import './app.css';
 import Link from 'next/link';
 
 function App() {
-    const [ user ] = useAuthState(firebase.auth())
+    const user = firebase.auth()
     const router = useRouter();
     const { theme, setTheme } = useTheme()
 
