@@ -15,7 +15,7 @@ import firebase from '../../../../firebase/firebaseClient';
 import AuthError from '@/components/auth_comp/auth_error/AuthError';
 
 function Login() {
-    const user = firebase.auth()
+    const [ user ] = useAuthState(firebase.auth())
     const router = useRouter()
 
     const [lEmail, setLEmail] = useState("");
