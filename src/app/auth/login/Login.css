@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+}
+
+.form {
+    max-width: 430px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: var(--main-background-color);
+}
+
+header { 
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--font);
+    text-align: center;
+}
+
+.form-content header span {
+    color: var(--primary-color);
+}
+
+form {
+    margin-top: 20px;
+}
+
+.form .lfield {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+.lfield input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 10px;
+    padding: 0 15px;
+    border: 1px solid var(--border-color);
+    outline: none;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--font);
+    cursor: pointer;
+}
+
+.authform-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.authform-link span,
+.authform-link a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--font);
+}
+
+.form a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form a:hover {
+    text-decoration: underline;
+}
+
+.line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin: 36px 0;
+    background-color: var(--border-color);
+}
+
+.line::before {
+    content: 'OR';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--main-background-color);
+    color: var(--font);
+    padding: 0 15px;
+}
+
+.media-options a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a.facebook {
+    color: var(--white);
+    background-color: var(--facebook);
+}
+
+.facebook-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+
+a.google {
+    color: var(--g-font);
+    background-color: var(--white);
+    border: solid 1px var(--border-color);
+}
+
+.google-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+
+@media screen and ( max-width: 600px ) {
+    .container {
+        background-color: var(--main-background-color);
+    }
+
+    .form {
+        padding: 15px 10px;
+    }
+}

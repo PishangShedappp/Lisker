@@ -1,0 +1,31 @@
+.AuthField {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+.AuthField .button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.AuthField .button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.AuthField .button span {
+    position: absolute;
+    color: var(--white);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
