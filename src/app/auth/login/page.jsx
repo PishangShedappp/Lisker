@@ -120,7 +120,7 @@ function Login() {
                     </form>
 
                     <div className='authform-link'>
-                        <span>Don`&apos;`t have an account? <Link href="/auth/register" className="signup-link">Sign Up</Link></span>
+                        <span>Don&apos;t have an account? <Link href="/auth/register" className="signup-link">Sign Up</Link></span>
                     </div>
 
                     <div className='line'></div>
