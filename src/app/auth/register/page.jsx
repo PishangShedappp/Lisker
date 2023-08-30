@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import type { Metadata } from 'next'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
