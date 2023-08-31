@@ -42,6 +42,7 @@ function Login() {
         if (user?.emailVerified === true) {
             router.push('/app')
         }
+        document.title = "Lisker - Login";
     }, [])
 
     async function loginButton() {

@@ -34,6 +34,7 @@ function App() {
           firebase.auth().signOut()
           router.push('/auth/login')
       }
+      document.title = "Lisker - App";
     })
 
     const themeHandler = () => {
@@ -133,5 +134,6 @@ function App() {
     </div>
   )
 }
+
 
 export default App

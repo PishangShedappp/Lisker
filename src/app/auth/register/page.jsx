@@ -97,6 +97,7 @@ function Login() {
         if (user) {
             router.push('/app')
         }
+        document.title = "Lisker - Register";
     }, [])
 
     return (
