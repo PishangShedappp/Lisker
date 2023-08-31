@@ -27,10 +27,13 @@ function App() {
     });
 
     useEffect(() => {
-        if (user?.emailVerified === false) {
-            firebase.auth().signOut()
-            router.push('/auth/login')
-        }
+      if (!user) {
+        router.push('/auth/login')
+      }
+      if (user?.emailVerified === false) {
+          firebase.auth().signOut()
+          router.push('/auth/login')
+      }
     })
 
     const themeHandler = () => {
