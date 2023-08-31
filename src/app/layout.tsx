@@ -6,6 +6,8 @@ import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({ subsets: ['latin'] })
 
+document.title = "Lisker"
+
 export default function RootLayout({children,}:{children: React.ReactNode}) {
   return (
     <html lang="en">
