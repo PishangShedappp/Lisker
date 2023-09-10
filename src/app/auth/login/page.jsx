@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { BsFacebook } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -12,6 +12,7 @@ import AuthButton from '@/components/auth_comp/AuthButton';
 import './Login.css'
 import firebase from '../../../../firebase/firebaseClient';
 import AuthError from '@/components/auth_comp/auth_error/AuthError';
+import AuthSuccess from '@/components/auth_comp/auth_success/AuthSuccess';
 
 function Login() {
     const [ user ] = useAuthState(firebase.auth())
@@ -23,7 +24,9 @@ function Login() {
     const [show, setShow] = useState(false);
 
     const [vError, setVError] = useState(false);
-    const [eMessage, setEMessage] = useState("")
+    const [eMessage, setEMessage] = useState("");
+
+    const [vEmailError, setVEmailError] = useState(false);
 
     const eyeHandler = () => {
         if (show === true) {
@@ -83,6 +86,78 @@ function Login() {
                 });
     }
 
+    async function githubButton() {
+        return await firebase
+            .auth()
+            .signInWithPopup(new firebase.auth.GithubAuthProvider())
+                .then((userCredential) => {
+                    console.log(userCredential)
+                    if (userCredential.additionalUserInfo.isNewUser === true) {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            verified: userCredential.user.emailVerified,
+                            email: userCredential.user.email,
+                            name: userCredential.user.displayName,
+                            provider: userCredential.user.displayName,
+                            photoUrl: userCredential.user.photoURL
+                        })
+                        firebase.firestore().collection("plans").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            plans: "1",
+                            dAt: Date().toLocaleString()
+                        })
+                    }
+                    if (userCredential.user.emailVerified === false) {
+                        firebase.auth().currentUser.sendEmailVerification();
+                        setEMessage("Please verify your email before login");
+                        setVEmailError(true)
+                        setVError(true);
+                    }
+                    else {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).update({
+                            verified: true,
+                        })
+                        router.push('/app')
+                    }
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log(errorCode)
+                    if (errorCode === 'auth/account-exists-with-different-credential') {
+                        setEMessage("Account exists with different login methods")
+                        setVError(true)
+                    }
+                })
+    }
+
+    async function googleButton() {
+        return await firebase
+            .auth()
+            .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                .then((userCredential) => {
+                    if (userCredential.additionalUserInfo.isNewUser === true) {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            verified: userCredential.user.emailVerified,
+                            email: userCredential.user.email,
+                            name: userCredential.user.displayName,
+                            provider: userCredential.user.providerData[0].providerId,
+                            photoUrl: userCredential.user.photoURL
+                        })
+                        firebase.firestore().collection("plans").doc(userCredential.user?.uid).set({
+                            uid: userCredential.user?.uid,
+                            plans: "1",
+                            dAt: Date().toLocaleString()
+                        })
+                    }
+                    router.push('/app')
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log(errorCode)
+                })
+    }
+
     const handleKeyDown = (event) => {
         if (event.key == 'Enter') {
             loginButton();
@@ -94,6 +169,12 @@ function Login() {
             <div className="form login">
                 <div className='form-content'>
                     <header><span>Tasker</span> Login</header>
+
+                    {vEmailError === false?
+                        <div className='hidden'></div>
+                    :
+                        <AuthSuccess content='We have sent you verification email'/>
+                    }
 
                     {vError === false?
                         <div className='hidden'></div>
@@ -127,11 +208,11 @@ function Login() {
                     <div className='line'></div>
 
                     <div className="media-options">
-                        <a href="" className="lfield facebook">
-                            <BsFacebook className="facebook-icon" size={22} />
-                            <span>Login with Facebook</span>
+                        <a className="lfield github" onClick={githubButton}>
+                            <BsGithub className="github-icon" size={22} />
+                            <span>Login with GitHub</span>
                         </a>
-                        <a href="" className="lfield google">
+                        <a className="lfield google" onClick={googleButton}>
                             <FcGoogle className='google-icon' size={22} />
                             <span>Login with Google</span>
                         </a>

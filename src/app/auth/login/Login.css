@@ -110,14 +110,19 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
-a.facebook {
+.media-options a:hover {
+    text-decoration: none;
+}
+
+a.github {
     color: var(--white);
-    background-color: var(--facebook);
+    background-color: var(--github);
 }
 
-.facebook-icon {
+.github-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

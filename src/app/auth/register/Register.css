@@ -112,12 +112,12 @@ form {
     justify-content: center;
 }
 
-a.facebook {
+a.github {
     color: var(--white);
-    background-color: var(--facebook);
+    background-color: var(--github);
 }
 
-.facebook-icon {
+.github-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

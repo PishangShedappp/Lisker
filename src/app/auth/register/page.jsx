@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { BsFacebook } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import firebase from '../../../../firebase/firebaseClient';
@@ -69,6 +69,7 @@ function Login() {
                         setSMessage("We have sent you verification email")
                         setVError(false)
                         setSBool(true)
+                        firebase.auth.currentUser().delete();
                     })
                     .catch((error) => {
                         var errorCode = error.code;
@@ -144,11 +145,11 @@ function Login() {
                     <div className='line'></div>
 
                     <div className="media-options">
-                        <a href="" className="lfield facebook">
-                            <BsFacebook className="facebook-icon" size={22} />
-                            <span>Login with Facebook</span>
+                        <a className="lfield github">
+                            <BsGithub className="github-icon" size={22} />
+                            <span>Login with GitHub</span>
                         </a>
-                        <a href="" className="lfield google">
+                        <a className="lfield google">
                             <FcGoogle className='google-icon' size={22} />
                             <span>Login with Google</span>
                         </a>
