@@ -57,7 +57,6 @@ function Login() {
                         setEMessage("Please verify your email before login");
                         setVError(true);
                     } else {
-                        console.log(userCredential.user?.uid)
                         firebase.firestore().collection("users").doc(userCredential.user?.uid).update({
                             verified: true,
                         })

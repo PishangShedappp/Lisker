@@ -5,14 +5,14 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
-import firebase from '../../../../firebase/firebaseClient';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useRouter } from 'next/navigation';
 
+import firebase from '../../../../firebase/firebaseClient';
 import AuthButton from '@/components/auth_comp/AuthButton';
 import './Register.css'
 import AuthSuccess from '@/components/auth_comp/auth_success/AuthSuccess';
 import AuthError from '@/components/auth_comp/auth_error/AuthError';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/navigation';
 
 function Login() {
     const [ user ] = useAuthState(firebase.auth())
