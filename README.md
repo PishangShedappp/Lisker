@@ -8,7 +8,7 @@
 ## Table of Contents
 * [Lisker Overview](#overview)
 * [How To Use](#how-to-use)
-* [Supper](#support-lisker-development)
+* [Support](#support-lisker-development)
 
 <hr>
 
