@@ -28,16 +28,6 @@ function Login() {
 
     const [vEmailError, setVEmailError] = useState(false);
 
-    const eyeHandler = () => {
-        if (show === true) {
-            setPasswordType("password");
-            setShow(false);
-        } if (show === false) {
-            setPasswordType("text");
-            setShow(true)
-        }
-    }
-
     useEffect(() => {
         if (user) {
             router.push('/app')
@@ -47,6 +37,16 @@ function Login() {
         }
         document.title = "Lisker - Login";
     }, [])
+
+    const eyeHandler = () => {
+        if (show === true) {
+            setPasswordType("password");
+            setShow(false);
+        } if (show === false) {
+            setPasswordType("text");
+            setShow(true)
+        }
+    }
 
     async function loginButton() {
         return await firebase
@@ -91,14 +91,13 @@ function Login() {
             .auth()
             .signInWithPopup(new firebase.auth.GithubAuthProvider())
                 .then((userCredential) => {
-                    console.log(userCredential)
                     if (userCredential.additionalUserInfo.isNewUser === true) {
                         firebase.firestore().collection("users").doc(userCredential.user.uid).set({
                             uid: userCredential.user.uid,
                             verified: userCredential.user.emailVerified,
                             email: userCredential.user.email,
                             name: userCredential.user.displayName,
-                            provider: userCredential.user.displayName,
+                            provider: userCredential.user.providerData[0].providerId,
                             photoUrl: userCredential.user.photoURL
                         })
                         firebase.firestore().collection("plans").doc(userCredential.user.uid).set({

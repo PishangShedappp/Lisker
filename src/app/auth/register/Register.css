@@ -110,6 +110,11 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.media-options a:hover {
+    text-decoration: none;
 }
 
 a.github {

@@ -28,6 +28,14 @@ function Login() {
     const [sMessage, setSMessage] = useState("")
     const [vError, setVError] = useState(false);
     const [eMessage, setEMessage] = useState("")
+    const [vEmailError, setVEmailError] = useState(false);
+
+    useEffect(() => {
+        if (user) {
+            router.push('/app')
+        }
+        document.title = "Lisker - Register";
+    }, [])
 
     const eyeHandler = () => {
         if (show === true) {
@@ -88,24 +96,94 @@ function Login() {
         }
     }
 
+    async function githubButton() {
+        return await firebase
+            .auth()
+            .signInWithPopup(new firebase.auth.GithubAuthProvider())
+                .then((userCredential) => {
+                    if (userCredential.additionalUserInfo.isNewUser === false) {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            verified: userCredential.user.emailVerified,
+                            email: userCredential.user.email,
+                            name: userCredential.user.displayName,
+                            provider: userCredential.user.providerData[0].providerId,
+                            photoUrl: userCredential.user.photoURL
+                        })
+                        firebase.firestore().collection("plans").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            plans: "1",
+                            dAt: Date().toLocaleString()
+                        })
+                    }
+                    if (userCredential.user.emailVerified === false) {
+                        firebase.auth().currentUser.sendEmailVerification();
+                        setEMessage("Please verify your email before login");
+                        setVEmailError(true)
+                        setVError(true);
+                    }
+                    else {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).update({
+                            verified: true,
+                        })
+                        router.push('/app')
+                    }
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log(errorCode)
+                    if (errorCode === 'auth/account-exists-with-different-credential') {
+                        setEMessage("Account exists with different login methods")
+                        setVError(true)
+                    }
+                })
+    }
+
+    async function googleButton() {
+        return await firebase
+            .auth()
+            .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                .then((userCredential) => {
+                    if (userCredential.additionalUserInfo.isNewUser === true) {
+                        firebase.firestore().collection("users").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            verified: userCredential.user.emailVerified,
+                            email: userCredential.user.email,
+                            name: userCredential.user.displayName,
+                            provider: userCredential.user.providerData[0].providerId,
+                            photoUrl: userCredential.user.photoURL
+                        })
+                        firebase.firestore().collection("plans").doc(userCredential.user.uid).set({
+                            uid: userCredential.user.uid,
+                            plans: "1",
+                            dAt: Date().toLocaleString()
+                        })
+                    }
+                    router.push('/app')
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log(errorCode)
+                })
+    }
+
     const handleKeyDown = (event) => {
         if (event.key == 'Enter') {
             SUButton();
         }
     }
 
-    useEffect(() => {
-        if (user) {
-            router.push('/app')
-        }
-        document.title = "Lisker - Register";
-    }, [])
-
     return (
         <div className='container forms'>
             <div className="form login">
                 <div className='form-content'>
                     <header><span>Tasker</span> Register</header>
+
+                    {vEmailError === false?
+                        <div className='hidden'></div>
+                    :
+                        <AuthSuccess content='We have sent you verification email'/>
+                    }
 
                     {sBool === false ?
                         <div className='hidden'></div>
@@ -145,11 +223,11 @@ function Login() {
                     <div className='line'></div>
 
                     <div className="media-options">
-                        <a className="lfield github">
+                        <a className="lfield github" onClick={githubButton}>
                             <BsGithub className="github-icon" size={22} />
                             <span>Login with GitHub</span>
                         </a>
-                        <a className="lfield google">
+                        <a className="lfield google" onClick={googleButton}>
                             <FcGoogle className='google-icon' size={22} />
                             <span>Login with Google</span>
                         </a>
