@@ -64,9 +64,12 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user?.uid).update({
                             verified: true,
                         })
-                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
-                        localStorage.setItem("email", JSON.stringify(userCredential.user.email));
-                        localStorage.setItem("name", JSON.stringify(userCredential.user.name));
+                        const ISSERVER = typeof window === "undefined";
+                        if (!ISSERVER) {
+                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        }
                         setVError(false)
                         router.push('/app')
                     }
@@ -121,9 +124,12 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user.uid).update({
                             verified: true,
                         })
-                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
-                        localStorage.setItem("email", JSON.stringify(userCredential.user.email));
-                        localStorage.setItem("name", JSON.stringify(userCredential.user.name));
+                        const ISSERVER = typeof window === "undefined";
+                        if (!ISSERVER) {
+                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        }
                         router.push('/app')
                     }
                 })
@@ -157,9 +163,12 @@ function Login() {
                             dAt: Date().toLocaleString()
                         })
                     }
-                    localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
-                    localStorage.setItem("email", JSON.stringify(userCredential.user.email));
-                    localStorage.setItem("name", JSON.stringify(userCredential.user.name));
+                    const ISSERVER = typeof window === "undefined";
+                    if (!ISSERVER) {
+                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                        localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                        localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                    }
                     router.push('/app')
                 })
                 .catch((error) => {

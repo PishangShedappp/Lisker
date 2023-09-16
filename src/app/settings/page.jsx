@@ -66,7 +66,10 @@ function Settings() {
 
     const logoutHandler = () => {
         firebase.auth().signOut();
+        const ISSERVER = typeof window === "undefined";
+        if (!ISSERVER) {
         localStorage.clear();
+        }
         router.push('/auth/login')
     }
 
