@@ -25,6 +25,8 @@ function Settings() {
     const [mMode, setMMode] = useState(false);
 
     const [profile, setProfile] = useState("");
+
+    const [getEmail, setGetEmail] = useState("")
     
     var fData = firebase.firestore().collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => [
@@ -44,6 +46,7 @@ function Settings() {
             firebase.auth().signOut()
             router.push('/auth/login')
         }
+        setGetEmail(JSON.parse(localStorage.getItem('email')));
         document.title = "Lisker - Settings";
     })
 
@@ -211,7 +214,7 @@ function Settings() {
                                                     </div>
                                                     <div className="form-profile-group">
                                                         <label htmlFor="inputEmail">Email</label>
-                                                        <input type="email" className='form-control' id='inputEmail' disabled="true" value={JSON.parse(localStorage.getItem('email'))}/>
+                                                        <input type="email" className='form-control' id='inputEmail' disabled="true" value={getEmail}/>
                                                         <p>We disabled email changing for security reason</p>
                                                     </div>
                                                 </div>
