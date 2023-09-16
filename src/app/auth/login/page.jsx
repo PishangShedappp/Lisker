@@ -64,11 +64,10 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user?.uid).update({
                             verified: true,
                         })
-                        const ISSERVER = typeof window === "undefined";
-                        if (process.browser) {
-                            window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                            window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        if (window) {
+                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                         }
                         setVError(false)
                         router.push('/app')
@@ -124,11 +123,10 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user.uid).update({
                             verified: true,
                         })
-                        const ISSERVER = typeof window === "undefined";
-                        if (process.browser) {
-                            window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                            window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        if (window) {
+                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                         }
                         router.push('/app')
                     }
@@ -163,11 +161,10 @@ function Login() {
                             dAt: Date().toLocaleString()
                         })
                     }
-                    const ISSERVER = typeof window === "undefined";
-                    if (process.browser) {
-                        window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                        window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                        window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                    if (window) {
+                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                        localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                        localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                     }
                     router.push('/app')
                 })
