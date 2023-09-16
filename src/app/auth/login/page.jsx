@@ -66,9 +66,9 @@ function Login() {
                         })
                         const ISSERVER = typeof window === "undefined";
                         if (!ISSERVER) {
-                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                            window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                         }
                         setVError(false)
                         router.push('/app')
@@ -126,9 +126,9 @@ function Login() {
                         })
                         const ISSERVER = typeof window === "undefined";
                         if (!ISSERVER) {
-                            localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                            localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                            window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                            window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                            window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                         }
                         router.push('/app')
                     }
@@ -165,9 +165,9 @@ function Login() {
                     }
                     const ISSERVER = typeof window === "undefined";
                     if (!ISSERVER) {
-                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
-                        localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                        localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
+                        window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
+                        window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
                     }
                     router.push('/app')
                 })
