@@ -18,3 +18,9 @@
 - [x] Reset password function
 - [x] Link to 'Login'
 - [x] Responsive media screen
+###
+- **Setting Page**
+- [ ] Interface (need to update wth some other info)
+- [ ] Upload profile picture function
+- [ ] Update button function
+- [ ] Responsive media screen

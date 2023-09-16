@@ -4,7 +4,9 @@ import React, {useEffect, useState} from 'react';
 import { BiHomeAlt2, BiNotepad, BiCheckCircle, BiStar } from 'react-icons/bi';
 import { BsGear, BsMoonStars, BsSun } from 'react-icons/bs';
 import { LuLogOut } from 'react-icons/lu';
-import { IoMenu } from 'react-icons/io5';
+import {IoLogoGithub} from 'react-icons/io';
+import {AiOutlineMenu} from 'react-icons/ai';
+import {MdClose} from 'react-icons/md'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from '../../../firebase/firebaseClient';
 import { useRouter } from 'next/navigation';
@@ -14,123 +16,137 @@ import './app.css';
 import Link from 'next/link';
 
 function App() {
-    const [ user ] = useAuthState(firebase.default.auth())
-    const router = useRouter();
-    const { theme, setTheme } = useTheme()
+  const [ user ] = useAuthState(firebase.default.auth());
+  const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
-    const [profile, setProfile] = useState("")
+  const [mMode, setMMode] = useState(false);
+
+  const [profile, setProfile] = useState("");
   
-    var fData = firebase.firestore().collection("users").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => [
-        setProfile(doc.data().photoUrl)
-      ]);
-    });
+  var fData = firebase.firestore().collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => [
+      setProfile(doc.data().photoUrl)
+    ]);
+  });
 
-    useEffect(() => {
-      if (!user) {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(sUser) {
+      if (sUser) {
+        return;
+      } else {
         router.push('/auth/login')
       }
-      if (user?.emailVerified === false) {
-          firebase.auth().signOut()
-          router.push('/auth/login')
-      }
-      document.title = "Lisker - App";
     })
-
-    const themeHandler = () => {
-      if (theme === "light") {
-        setTheme("dark")
-        console.log(theme)
-      } else {
-        setTheme("light")
-        console.log(theme)
-      }
+    if (user?.emailVerified === false) {
+        firebase.auth().signOut()
+        router.push('/auth/login')
     }
+    document.title = "Lisker - App";
+  })
 
-    const logoutHandler = () => {
-      firebase.auth().signOut()
-      router.push('/auth/login')
+  const themeHandler = () => {
+    if (theme === "light") {
+      setTheme("dark")
+    } else {
+      setTheme("light")
     }
+  }
+
+  const menuHandler = () => {
+    if (mMode === false) {
+      setMMode(true);
+    }
+    if (mMode === true) {
+      setMMode(false);
+    }
+  }
+
+  const logoutHandler = () => {
+    firebase.auth().signOut()
+    localStorage.clear();
+    router.push('/auth/login')
+  }
 
   return (
-    <div className='body'>
-      {/* Sidebar Start */}
-      <div className='sidebar'>
-        <Link href='/app' className='logo'>
+    <div className="body">
+      {/* SIDEBAR START */}
+      <div className={mMode === false ? 'sidebar hide' : 'sidebar'}>
+        <Link href='/app' className='brand'>
+          <IoLogoGithub />
           <span className='text'>Lisker</span>
         </Link>
 
-        <ul className='side-menu'>
+        <ul className='side-menu top'>
           <li className='active'>
             <a href="#">
               <BiHomeAlt2 />
-              Home
+              <span className='text'>Home</span>
             </a>
           </li>
 
           <li>
             <a href="#">
               <BiCheckCircle />
-              Tasks
+              <span className='text'>Tasks</span>
             </a>
           </li>
 
           <li>
             <a href="#">
               <BiNotepad />
-              Notes
+              <span className="text">Notes</span>
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="">
               <BiStar />
-              Starred
+              <span className="text">Starred</span>
             </a>
           </li>
         </ul>
 
         <ul className="side-menu bottom">
           <li>
-            <a href="#">
+            <Link href="/settings">
               <BsGear />
-              Settings
-            </a>
+              <span className="text">Settings</span>
+            </Link>
           </li>
 
           <li>
             <div className='logout' onClick={logoutHandler}>
               <span>
                 <LuLogOut />
-                Logout
+                <span className='text'>Logout</span>
               </span>
             </div>
           </li>
         </ul>
       </div>
-      {/* Sidebar End */}
+      {/* SIDEBAR END */}
 
-      {/* Content Section Start*/}
+      {/* CONTENT START */}
       <div className='content'>
-        {/* Navbar Start */}
+        {/* NAVBAR START */}
         <nav>
-          <IoMenu className="menu"/>
-          {theme === "dark" ?
-            <BsSun onClick={themeHandler}/>
+          {mMode === false ?
+            <AiOutlineMenu onClick={menuHandler}/>
           :
-            <BsMoonStars onClick={themeHandler}/>
+            <MdClose onClick={menuHandler} size={22}/>
           }
-          <a href="#" className='profile'>
+          <Link href='/profile' className='profile'>
             {profile == null ?
               <img src='https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg'/>
             :
               <img src={profile}/>
             }
-          </a>
+          </Link>
         </nav>
-        {/* Navbar End */}
+        {/* NAVBAR END */}
       </div>
-      {/* Content Section End*/}
+      {/* CONTENT END */}
     </div>
   )
 }

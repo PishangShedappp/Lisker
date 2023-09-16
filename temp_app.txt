@@ -1,0 +1,79 @@
+<div className='body'>
+      {/* Sidebar Start */}
+      <div className='sidebar'>
+        <Link href='/app' className='logo'>
+          <span className='text'>Lisker</span>
+        </Link>
+
+        <ul className='side-menu'>
+          <li className='active'>
+            <a href="#">
+              <BiHomeAlt2 />
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <BiCheckCircle />
+              Tasks
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <BiNotepad />
+              Notes
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <BiStar />
+              Starred
+            </a>
+          </li>
+        </ul>
+
+        <ul className="side-menu bottom">
+          <li>
+            <a href="#">
+              <BsGear />
+              Settings
+            </a>
+          </li>
+
+          <li>
+            <div className='logout' onClick={logoutHandler}>
+              <span>
+                <LuLogOut />
+                Logout
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      {/* Sidebar End */}
+
+      {/* Content Section Start*/}
+      <div className='content'>
+        {/* Navbar Start */}
+        <nav>
+          <IoMenu className="menu"/>
+          {theme === "dark" ?
+            <BsSun onClick={themeHandler}/>
+          :
+            <BsMoonStars onClick={themeHandler}/>
+          }
+          <a href="#" className='profile'>
+            {profile == null ?
+              <img src='https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg'/>
+            :
+              <img src={profile}/>
+            }
+          </a>
+        </nav>
+        {/* Navbar End */}
+      </div>
+      {/* Content Section End*/}
+    </div>

@@ -5,19 +5,31 @@
   --primary-color-hover: #002fda;
   --border-color: #ddd;
   --font: #252e3c;
+  --light-font: #252e3c;
   --g-font: #252e3c;
   --b-font: #4d5461;
   --black: #000;
   --white: #fff;
-  --github: #000 ;
+  --github: #000;
   --success-color: #4bb543;
   --success-bg-color: #b5e4b2;
   --error-color: #d0342c;
   --error-bg-color: #ffa8a3;
+  --sidebar-background: #eeeeee;
+  --sidebar: #ffffff;
+  --active-font-setting: #ffffff;
 }
 
 [data-theme='dark'] {
   --main-background-color: #181a1e;
   --verified-background-color: #25252c;
   --font: #fbfbfb;
+  --light-font: #dbdbdb;
+  --sidebar-background: #181a1e;
+  --sidebar: #111314;
+  --active-font-setting: #111314;
+}
+
+.text-center {
+  text-align: center!important;
 }

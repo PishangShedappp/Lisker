@@ -1,0 +1,548 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+small {
+    font-weight: 400;
+    font-size: 80%;
+    color: var(--light-font);
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--sidebar-background);
+    overflow-x: hidden;
+}
+
+[src=''] {
+    background-image: url('/profile.jpg');
+    overflow: hidden;
+}
+
+[src='']::before {
+    content: " ";
+    font-size: 1000px;
+}
+
+.skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-text {
+    width: 100%;
+    height: .5rem;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+/** SIDEBAR START **/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--sidebar);
+    z-index: 2000;
+    transition: .2s ease;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    user-select: none;
+}
+
+.sidebar::--webkit-scrollbar {
+    display: none;
+}
+
+.sidebar.hide {
+    width: 60px;
+}
+
+.sidebar .brand {
+    justify-content: center;
+    flex-direction: row;
+    font-size: 30px;
+    font-weight: 700;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: var(--sidebar);
+    z-index: 500;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    box-sizing: content-box;
+}
+
+.sidebar .brand svg {
+    min-width: 50px;
+    color: var(--font);
+}
+
+.sidebar.hide .brand .text {
+    display: none;
+}
+
+.sidebar .side-menu {
+    width: 100%;
+    margin-top: 48px;
+}
+
+.sidebar .side-menu li {
+    height: 48px;
+    background: transparent;
+    margin-left: 6px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+}
+
+.sidebar .side-menu li.active {
+    background: var(--sidebar-background);
+    position: relative;
+}
+
+.sidebar .side-menu li.active::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--sidebar-background);
+    z-index: -1;
+}
+
+.sidebar .side-menu li.active::after {
+    content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	bottom: -40px;
+	right: 0;
+	box-shadow: 20px -20px 0 var(--sidebar-background);
+	z-index: -1;
+}
+
+.sidebar .side-menu li .logout {
+    cursor: pointer;
+}
+
+.sidebar .side-menu li a,
+.sidebar .side-menu li .logout span {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    border-radius: 48px;
+    font-size: 18px;
+    color: var(--font);
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.sidebar .side-menu li .logout span {
+    color: var(--error-color);
+}
+
+.sidebar.hide .side-menu li .logout span .text {
+    padding-left: 5px;
+    transition: .3s ease-in;
+}
+
+.sidebar .side-menu li.active a {
+    color: var(--primary-color);
+}
+
+.sidebar .side-menu.bottom {
+    position: absolute;
+    bottom: 10px
+}
+
+.sidebar.hide .side-menu li a {
+    width: calc(48px - (4px * 2));
+    transition: width .3s ease;
+}
+
+.sidebar .side-menu.top li a:hover {
+	color: var(--primary-color);
+}
+
+.sidebar .side-menu li a svg,
+.sidebar .side-menu li .logout span svg {
+	min-width: calc(60px  - ((4px + 6px) * 2));
+	display: flex;
+	justify-content: center;
+}
+/** SIDEBAR END **/
+
+.dump {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    z-index: 1500;
+}
+
+/** CONTENT START **/
+.content {
+    position: relative;
+    width: calc(100% - 280px);
+    left: 280px;
+    transition: .2s ease;
+}
+
+.sidebar.hide ~ .content {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+/** CONTENT END **/
+
+/** NAVBAR START **/
+.content nav.navbar {
+    height: 56px;
+    background: var(--sidebar);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.content nav.navbar a {
+    color: var(--font);
+}
+
+.content nav.navbar svg {
+	cursor: pointer;
+	color: var(--font);
+}
+
+.content nav.navbar svg .menu-icon {
+    color: var(--font);
+}
+
+.content nav.navbar .profile {
+    position: absolute;
+    right: 20px;
+}
+
+.content nav.navbar .profile img {
+    user-select: none;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+/** NAVBAR END **/
+
+/** MAIN BODY START **/
+.content main {
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(100vh - 56px);
+}
+
+.content main .header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content main .header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--font);
+}
+
+/** OPTION CONTAINER START **/
+.content main .option-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/** LEFT OPTION START **/
+.content main .option-container .left-option {
+    position: relative;
+    display: block;
+    width: 100%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.content main .option-container .left-option .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--sidebar);
+    background-clip: border-box;
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.content main .option-container .left-option .card .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.content main .option-container .left-option .card .card-body .option {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.content main .option-container .left-option .card .card-body .option a {
+    display: flex;
+    color: var(--font);
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.content main .option-container .left-option .card .card-body .option a:hover {
+    color: var(--primary-color);
+}
+
+.content main .option-container .left-option .card .card-body .option a.active {
+    color: var(--active-font-setting);
+    background: var(--primary-color);
+}
+
+.content main .option-container .left-option .card .card-body .option a.active:hover {
+    color: var(--active-font-setting);
+}
+
+.content main .option-container .left-option .card .card-body .option a svg {
+    overflow: hidden;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+/** LEFT OPTION END **/
+
+
+/** RIGHT OPTION START **/
+.content main .option-container .right-option {
+    position: relative;
+    width: 100%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.content main .option-container .right-option .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--sidebar);
+    background-clip: border-box;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.content main .option-container .right-option .card .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane {
+    display: block;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane h6 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .left-profile-col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .left-profile-col .form-profile-group {
+    margin-bottom: 1rem;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .left-profile-col .form-profile-group label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .left-profile-col .form-profile-group .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75em + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--font);
+    background-clip: padding-box;
+    border: 1px solid var(--font);
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .left-profile-col .form-profile-group p {
+    color: var(--light-font);
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .right-profile-col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .right-profile-col .pp-group img {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    width: 128px;
+    height: 128px;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .right-profile-col .pp-group .upload-pp {
+    margin-top: 0.5rem;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .profile-body .right-profile-col .pp-group .upload-pp span {
+    display: inline-block;
+    font-weight: 400;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--font);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .save-button {
+    display: inline-block;
+    font-weight: 400;
+    color: var(--font);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.content main .option-container .right-option .card .card-body .tab-pane form .save-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/** RIGHT OPTION END **/
+/** OPTION CONTAINER END **/
+/** MAIN BODY END **/
+
+
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        width: calc(100% - 60px);
+        left: 200px;
+    }
+
+    .content main .option-container .left-option {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .content nav.navbar .profile {
+        display: none;
+    }
+}

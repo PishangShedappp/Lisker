@@ -31,9 +31,13 @@ function Login() {
     const [vEmailError, setVEmailError] = useState(false);
 
     useEffect(() => {
-        if (user) {
-            router.push('/app')
-        }
+        firebase.auth().onAuthStateChanged(function(sUser) {
+            if (sUser) {
+                router.push('/app');
+            } else {
+                return;
+            }
+        })
         document.title = "Lisker - Register";
     }, [])
 

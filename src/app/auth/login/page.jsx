@@ -29,9 +29,13 @@ function Login() {
     const [vEmailError, setVEmailError] = useState(false);
 
     useEffect(() => {
-        if (user) {
-            router.push('/app')
-        }
+        firebase.auth().onAuthStateChanged(function(sUser) {
+            if (sUser) {
+                router.push('/app');
+            } else {
+                return;
+            }
+        })
         if (user?.emailVerified === true) {
             router.push('/app')
         }
@@ -60,7 +64,9 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user?.uid).update({
                             verified: true,
                         })
-                        console.log("Success");
+                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
+                        localStorage.setItem("email", JSON.stringify(userCredential.user.email));
+                        localStorage.setItem("name", JSON.stringify(userCredential.user.name));
                         setVError(false)
                         router.push('/app')
                     }
@@ -115,6 +121,9 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user.uid).update({
                             verified: true,
                         })
+                        localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
+                        localStorage.setItem("email", JSON.stringify(userCredential.user.email));
+                        localStorage.setItem("name", JSON.stringify(userCredential.user.name));
                         router.push('/app')
                     }
                 })
@@ -148,6 +157,9 @@ function Login() {
                             dAt: Date().toLocaleString()
                         })
                     }
+                    localStorage.setItem("uid", JSON.stringify(userCredential.user.uid));
+                    localStorage.setItem("email", JSON.stringify(userCredential.user.email));
+                    localStorage.setItem("name", JSON.stringify(userCredential.user.name));
                     router.push('/app')
                 })
                 .catch((error) => {
