@@ -65,7 +65,7 @@ function Login() {
                             verified: true,
                         })
                         const ISSERVER = typeof window === "undefined";
-                        if (!ISSERVER) {
+                        if (process.browser) {
                             window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                             window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
                             window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
@@ -125,7 +125,7 @@ function Login() {
                             verified: true,
                         })
                         const ISSERVER = typeof window === "undefined";
-                        if (!ISSERVER) {
+                        if (process.browser) {
                             window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                             window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
                             window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
@@ -164,7 +164,7 @@ function Login() {
                         })
                     }
                     const ISSERVER = typeof window === "undefined";
-                    if (!ISSERVER) {
+                    if (process.browser) {
                         window.localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                         window.localStorage.setItem("email", JSON.stringify(userCredential.user.email))
                         window.localStorage.setItem("name", JSON.stringify(userCredential.user.name))
