@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background: var(--white);
+    background: var(--main-background-color);
     overflow-x: hidden;
 }
 
@@ -184,6 +184,79 @@ body {
 }
 /** HERO END **/
 
+/** FEATURES START **/
+.line_features {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin: 36px 0;
+    margin-bottom: 70px;
+    background-color: var(--border-color);
+}
+
+.line_features::before {
+    content: 'FEATURES';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--main-background-color);
+    color: var(--font);
+    padding: 0 15px;
+}
+
+.features {
+    padding: 30px 0;
+    overflow: hidden;
+    background: var(--main-background-color);
+}
+
+.features .features_container {
+    width: 100%;
+    padding-left: calc(1.5rem * .5);
+    padding-right: calc(1.5rem * .5);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features .features_container .features_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * 1.5rem);
+    margin-left: calc(-.5 * 1.5rem);
+    margin-right: calc(-.5 * 1.5rem);
+}
+
+.features .features_container .features_row .features_item_container {
+    display: flex;
+}
+
+.features .features_container .features_row .features_item_container .features_icon {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-size: 36px;
+    transition: 0.3s;
+}
+
+.features .features_container .features_row .features_item_container .features_item {
+    position: relative;
+    padding: 30px;
+    transition: all ease-in-out 0.4s;
+    height: 100%;
+}
+
+.features .features_container .features_row .features_item_container .features_item h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.features .features_container .features_row .features_item_container .features_item p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+/** FEATURES END **/
 
 
 /** RESPONSIVE THINGS **/
@@ -195,6 +268,10 @@ body {
     .hero .hero_container {
         max-width: 540px;
     }
+
+    .features .features_container {
+        max-width: 540px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -204,6 +281,15 @@ body {
 
     .hero .hero_container {
         max-width: 720px;
+    }
+
+    .features .features_container {
+        max-width: 720px;
+    }
+
+    .features .features_container .features_row .features_item_container {
+        flex: 0 0 auto;
+        width: 50%;
     }
 }
 
@@ -232,6 +318,10 @@ body {
     .hero .hero_container .hero_row .hero_left .hero_left_button {
         justify-content: flex-start;
     }
+
+    .features .features_container {
+        max-width: 960px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -242,6 +332,15 @@ body {
     .hero .hero_container {
         max-width: 1140px;
     }
+
+    .features .features_container {
+        max-width: 1140px;
+    }
+
+    .features .features_container .features_row .features_item_container {
+        flex: 0 0 auto;
+        width: 25%;
+    }
 }
 
 @media screen and (min-width: 1400px) {
@@ -250,6 +349,10 @@ body {
     }
 
     .hero .hero_container {
+        max-width: 1320px;
+    }
+
+    .features .features_container {
         max-width: 1320px;
     }
 }
@@ -275,5 +378,9 @@ body {
         font-size: 18px;
         line-height: 24px;
         margin-bottom: 30px;
+    }
+
+    .features {
+        padding: 10px 0;
     }
 }
