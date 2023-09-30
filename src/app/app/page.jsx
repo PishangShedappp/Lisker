@@ -22,15 +22,29 @@ function App() {
 
   const [mMode, setMMode] = useState(false);
 
+  const [getUid, setGetUid] = useState("");
+
   const [profile, setProfile] = useState("");
+  const [dName, setDName] = useState();
   
-  var fData = firebase.firestore().collection("users").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => [
+  var pData = firebase.firestore().collection("users").get(getUid).then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
       setProfile(doc.data().photoUrl)
-    ]);
+    });
   });
 
+  function nData() {
+    firebase.firestore().collection("users").get(getUid).then((querySnapshot) => {
+      if (!querySnapshot.docs[querySnapshot.docs.length-1].data().name) {
+        router.push('/epsuccess?action=1')
+      } else {
+        return;
+      }
+    });
+  }
+
   useEffect(() => {
+    setGetUid(JSON.parse(localStorage.getItem('uid')));
     firebase.auth().onAuthStateChanged(function(sUser) {
       if (sUser) {
         return;
@@ -42,6 +56,7 @@ function App() {
         firebase.auth().signOut()
         router.push('/auth/login')
     }
+    nData()
     document.title = "Lisker - App";
   })
 
@@ -129,6 +144,12 @@ function App() {
       </div>
       {/* SIDEBAR END */}
 
+      {mMode === true ?
+        <div className="dump" onClick={menuHandler}></div>
+      :
+        <div className="hidden"></div>
+      }
+
       {/* CONTENT START */}
       <div className='content'>
         {/* NAVBAR START */}
@@ -147,6 +168,14 @@ function App() {
           </Link>
         </nav>
         {/* NAVBAR END */}
+
+        {/* MAIN BODY START */}
+        <main>
+          <div className='header'>
+            <h1>Dashboard</h1>
+          </div>
+        </main>
+        {/* MAIN BODY END */}
       </div>
       {/* CONTENT END */}
     </div>

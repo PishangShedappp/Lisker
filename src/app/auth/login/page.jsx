@@ -28,16 +28,24 @@ function Login() {
 
     const [vEmailError, setVEmailError] = useState(false);
 
+    const [name, setName] = useState("")
+    const [getName, setGetName] = useState("")
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(sUser) {
-            if (sUser) {
-                router.push('/app');
-            } else {
+            if (user?.emailVerified === true) {
+                router.push('/app')
                 return;
+            }
+            if (sUser) {
+                return;
+            } else {
+                router.push('/auth/login')
             }
         })
         if (user?.emailVerified === true) {
             router.push('/app')
+            return;
         }
         document.title = "Lisker - Login";
     }, [])
@@ -64,13 +72,15 @@ function Login() {
                         firebase.firestore().collection("users").doc(userCredential.user?.uid).update({
                             verified: true,
                         })
+                        console.log(userCredential.user.displayName)
                         if (window) {
                             localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                             localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.displayName))
+                            localStorage.setItem("profilePic", JSON.stringify(userCredential.user.photoURL))
                         }
-                        setVError(false)
                         router.push('/app')
+                        setVError(false)
                     }
                 })
                 .catch((error) => {
@@ -126,7 +136,8 @@ function Login() {
                         if (window) {
                             localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                             localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                            localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                            localStorage.setItem("name", JSON.stringify(userCredential.user.displayName))
+                            localStorage.setItem("profilePic", JSON.stringify(userCredential.user.photoURL))
                         }
                         router.push('/app')
                     }
@@ -164,7 +175,8 @@ function Login() {
                     if (window) {
                         localStorage.setItem("uid", JSON.stringify(userCredential.user.uid))
                         localStorage.setItem("email", JSON.stringify(userCredential.user.email))
-                        localStorage.setItem("name", JSON.stringify(userCredential.user.name))
+                        localStorage.setItem("name", JSON.stringify(userCredential.user.displayName))
+                        localStorage.setItem("profilePic", JSON.stringify(userCredential.user.photoURL))
                     }
                     router.push('/app')
                 })

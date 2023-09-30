@@ -13,6 +13,7 @@ import AuthButton from '@/components/auth_comp/AuthButton';
 import './Register.css'
 import AuthSuccess from '@/components/auth_comp/auth_success/AuthSuccess';
 import AuthError from '@/components/auth_comp/auth_error/AuthError';
+import toast from 'react-hot-toast';
 
 function Login() {
     const [ user ] = useAuthState(firebase.auth())
@@ -25,15 +26,18 @@ function Login() {
     const [show, setShow] = useState(false);
 
     const [sBool, setSBool] = useState(false);
-    const [sMessage, setSMessage] = useState("")
     const [vError, setVError] = useState(false);
     const [eMessage, setEMessage] = useState("")
     const [vEmailError, setVEmailError] = useState(false);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(sUser) {
+            if (user?.emailVerified === true) {
+                router.push('/app')
+                return;
+            }
             if (sUser) {
-                router.push('/app');
+                router.push('/auth/login')
             } else {
                 return;
             }
@@ -75,10 +79,13 @@ function Login() {
                             plans: "1",
                             dAt: Date().toLocaleString()
                         })
+                        toast.success('We have sent you verification email', {
+                            duration: 3000,
+                            position: 'bottom-center'
+                        })
                         setSEmail("")
                         setSPassword("")
                         setCPassword("")
-                        setSMessage("We have sent you verification email")
                         setVError(false)
                         setSBool(true)
                         firebase.auth.currentUser().delete();
@@ -187,12 +194,6 @@ function Login() {
                         <div className='hidden'></div>
                     :
                         <AuthSuccess content='We have sent you verification email'/>
-                    }
-
-                    {sBool === false ?
-                        <div className='hidden'></div>
-                        :
-                        <AuthSuccess content={sMessage}/>
                     }
 
                     {vError === false ?

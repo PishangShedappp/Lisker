@@ -18,6 +18,7 @@
   --sidebar-background: #eeeeee;
   --sidebar: #ffffff;
   --active-font-setting: #ffffff;
+  --mid-font: rgba(94, 91, 91, 0.6);
 }
 
 [data-theme='dark'] {
@@ -28,6 +29,7 @@
   --sidebar-background: #181a1e;
   --sidebar: #111314;
   --active-font-setting: #111314;
+  --mid-font: rgba(255, 255, 255, 0.6);
 }
 
 .text-center {

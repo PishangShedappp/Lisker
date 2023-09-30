@@ -232,6 +232,27 @@ body {
 }
 /** NAVBAR END **/
 
+/** MAIN BODY START **/
+.content main {
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(100vh - 56px);
+}
+
+.content main .header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content main .header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--font);
+}
+/** MAIN BODY END **/
+
 
 
 @media screen and (max-width: 768px) {

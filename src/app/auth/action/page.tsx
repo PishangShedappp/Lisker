@@ -1,11 +1,10 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { useSearchParams  } from 'next/navigation';
+import { useSearchParams, useRouter  } from 'next/navigation';
 import { BsCheck2Circle } from 'react-icons/bs';
 import { BiErrorCircle } from 'react-icons/bi';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 import './Action.css';
 import firebase from '../../../../firebase/firebaseClient';

@@ -10,15 +10,15 @@ import {AiOutlineMenu, AiOutlineUser, AiFillCreditCard} from 'react-icons/ai';
 import {MdClose} from 'react-icons/md'
 import {FaLock} from 'react-icons/fa'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import firebase from '../../../firebase/firebaseClient';
+import firebase from '../../../../firebase/firebaseClient';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import toast from 'react-hot-toast';
 
-import './settings.css';
+import './password.css';
 import Link from 'next/link';
 
-function Settings() {
+function Password() {
     const [ user ] = useAuthState(firebase.default.auth());
     const router = useRouter();
     const { theme, setTheme } = useTheme();
@@ -26,14 +26,11 @@ function Settings() {
     const [mMode, setMMode] = useState(false);
 
     const [profile, setProfile] = useState("");
-    const [fUsername, setFUsername] = useState("");
-
-    const [userName, setUsername] = useState("");
+    const [cPassword, setCPassword] = useState("")
+    const [nPassword, setNPassword] = useState("")
+    const [vPassword, setVPassword] = useState("")
 
     const [getUid, setGetUid] = useState("")
-    const [getEmail, setGetEmail] = useState("")
-    const [getProfilePic, setGetProfilePic] = useState("")
-    const [selectedProfile, setSelectedProfile] = useState("");
 
     // REF for upload profile picture input
     const uploadFileRef = useRef(null);
@@ -41,25 +38,22 @@ function Settings() {
     var fData = firebase.firestore().collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             setProfile(doc.data().photoUrl)
-            setFUsername(doc.data().name)
         });
     });
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(sUser) {
-        if (sUser) {
-            return;
-        } else {
-            router.push('/auth/login')
-        }
+            if (sUser) {
+                return;
+            } else {
+                router.push('/auth/login')
+            }
         })
         if (user?.emailVerified === false) {
             firebase.auth().signOut()
             router.push('/auth/login')
         }
         setGetUid(JSON.parse(localStorage.getItem('uid')))
-        setGetEmail(JSON.parse(localStorage.getItem('email')));
-        setGetProfilePic(JSON.parse(localStorage.getItem('profilePic')));
         document.title = "Lisker - Settings";
     })
 
@@ -80,8 +74,9 @@ function Settings() {
         router.push('/auth/login')
     }
 
+    /* Need some update on saveSettingHandler to work with password from username */
     const saveSettingHandler = () => {
-        if (!userName) {
+        /**if (!userName) {
             toast.error(`Input must be filled`, {
                 duration: 3000,
                 position: 'bottom-center'
@@ -96,32 +91,12 @@ function Settings() {
                 duration: 3000,
                 position: 'bottom-center'
             })
-        }
-    }
-
-    const uploadClick = () => {
-        uploadFileRef.current.click();
-    }
-
-    const profileChanged = (e) => {
-        const fileObj = e.target.files[0];
-        if (!fileObj) {
-            return;
-        }
-
-        setSelectedProfile(e.target.files[0])
-    }
-
-    let pImage
-    if (selectedProfile) {
-        pImage = <img src={URL.createObjectURL(selectedProfile)}/>
-    }
-    if (!selectedProfile) {
-        if (profile === null) {
-            pImage = <img src='/profile.jpg'/>
-        }
-        if (profile !== null) {
-            pImage = <img src={profile}/>
+        }**/
+        if (nPassword !== vPassword) {
+            toast.error("New password not match", {
+                duration: 3000,
+                position: 'bottom-center'
+            })
         }
     }
 
@@ -224,11 +199,11 @@ function Settings() {
                             <div className='card'>
                                 <div className='card-body'>
                                     <div className='option'>
-                                        <Link href="/settings" className='nav-item active'>
+                                        <Link href="/settings" className='nav-item'>
                                             <AiOutlineUser size={24}/>
                                             Account
                                         </Link>
-                                        <Link href="/settings/password" className='nav-item'>
+                                        <Link href="/settings/password" className='nav-item active'>
                                             <FaLock size={24}/>
                                             Password
                                         </Link>
@@ -259,25 +234,19 @@ function Settings() {
                                             <div className='profile-body'>
                                                 <div className="left-profile-col">
                                                     <div className="form-profile-group">
-                                                        <label htmlFor="inputName">Username</label>
-                                                        <input type="text" className='form-control' id='inputName' placeholder='Username' defaultValue={fUsername} onChange={(e) => setUsername(e.target.value)}/>
+                                                        <label htmlFor="inputCurrentPassword">Current Password</label>
+                                                        <input type="text" className='form-control' id='inputCurrentPassword' onChange={(e) => setCPassword(e.target.value)}/>
+                                                        <Link href='/auth/password_reset'>
+                                                            <p className='reset-link'>Forgot Password?</p>
+                                                        </Link>
                                                     </div>
                                                     <div className="form-profile-group">
-                                                        <label htmlFor="inputEmail">Email</label>
-                                                        <input type="email" className='form-control' id='inputEmail' disabled="true" value={getEmail}/>
-                                                        <p>We disabled email changing for security reason</p>
+                                                        <label htmlFor="inputNewPassword">New Password</label>
+                                                        <input type="password" className='form-control' id='inputNewPassword' onChange={(e) => setNPassword(e.target.value)}/>
                                                     </div>
-                                                </div>
-                                                <div className="right-profile-col">
-                                                    <div className='pp-group text-center'>
-                                                        {pImage}
-                                                        <div className='upload-pp' onClick={uploadClick}>
-                                                            <span>
-                                                                <input type="file" style={{ display: 'none' }} ref={uploadFileRef} onChange={profileChanged} accept="image/png, image/jpeg"/>
-                                                                Upload
-                                                            </span>
-                                                        </div>
-                                                        <small>For best result, use an image at least 128px by 128px.</small>
+                                                    <div className="form-profile-group">
+                                                        <label htmlFor="inputVerifyPassword">Verify Password</label>
+                                                        <input type="password" className='form-control' id='inputVerifyPassword' onChange={(e) => setVPassword(e.target.value)}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -297,4 +266,4 @@ function Settings() {
     )
 }
 
-export default Settings
+export default Password
