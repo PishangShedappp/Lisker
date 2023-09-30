@@ -18,7 +18,7 @@ function EpSuccess() {
     const actionMode = searchParams.get('action')
 
     useEffect(() => {
-        setGetUid(JSON.parse(localStorage.getItem('uid')));
+        setGetUid(JSON.parse(localStorage.getItem('uid')!));
         document.title = "Lisker - Success";
     })
 
