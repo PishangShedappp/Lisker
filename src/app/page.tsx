@@ -65,14 +65,14 @@ export default function Page() {
               <div className="features_item">
                 <MdOutlineAttachMoney className='features_icon'/>
                 <h4>Affordable</h4>
-                <p>It's suitable for anyone who want to save their money and limit some budget.</p>
+                <p>It&apos;s suitable for anyone who want to save their money and limit some budget.</p>
               </div>
             </div>
             <div className="features_item_container" data-aos='zoom-out'>
               <div className="features_item">
                 <FaUserGraduate className='features_icon'/>
                 <h4>User Friendly</h4>
-                <p>The UI is user friendly that means it's easy to learn for any age either young or old.</p>
+                <p>The UI is user friendly that means it&apos;s easy to learn for any age either young or old.</p>
               </div>
             </div>
             <div className="features_item_container" data-aos='zoom-out'>
