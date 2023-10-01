@@ -5,7 +5,8 @@ import {AiOutlineMenu} from 'react-icons/ai';
 import {MdOutlineAttachMoney} from 'react-icons/md';
 import {FaUserGraduate} from 'react-icons/fa6';
 import {FaFeatherAlt} from 'react-icons/fa';
-import {BsFillShieldFill} from 'react-icons/bs';
+import {BsFillShieldFill, BsDot} from 'react-icons/bs';
+import {BiX} from 'react-icons/bi';
 import Link from 'next/link';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -94,6 +95,133 @@ export default function Page() {
       </div>
       {/* FEATURES END */}
       {/* PRICING START */}
+      <div className="pricing">
+        <div className="pricing_container" data-aos='fade-up'>
+          <div className="pricing_header">
+            <h2>Our Pricing</h2>
+            <p>If you're new here you can compare what we include in every plan below</p>
+          </div>
+          <div className="pricing_row">
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+              <div className="pricing_item">
+                <div className="pricing_item_header">
+                  <h3>Free Plan</h3>
+                  <h4>
+                    <sup>$</sup>
+                    "0"
+                    <span> / month</span>
+                  </h4>
+                </div>
+                <ul>
+                  <li>
+                    <BsDot />
+                    <span>Up to 5 MB file uploads</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>5 projects</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Email support</span>
+                  </li>
+                  <li className='na'>
+                    <BiX />
+                    <span>Ads removed</span>
+                  </li>
+                  <li className="na">
+                    <BiX />
+                    <span>Whiteboards</span>
+                  </li>
+                  <li className="na">
+                    <BiX />
+                    <span>Priority support 24/7</span>
+                  </li>
+                </ul> 
+                <div className="pricing_button"></div>
+              </div>
+            </div>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+              <div className="pricing_item featured">
+                <div className="pricing_item_header">
+                  <h3>Premium Plan</h3>
+                  <h4>
+                    <sup>$</sup>
+                    "7"
+                    <span> / month</span>
+                  </h4>
+                </div>
+                <ul>
+                  <li>
+                    <BsDot />
+                    <span>Up to 15 MB file uploads</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>20 projects</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Email support</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Ads removed</span>
+                  </li>
+                  <li className="na">
+                    <BiX />
+                    <span>Whiteboards</span>
+                  </li>
+                  <li className="na">
+                    <BiX />
+                    <span>Priority support 24/7</span>
+                  </li>
+                </ul> 
+                <div className="pricing_button"></div>
+              </div>
+            </div>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+              <div className="pricing_item">
+                <div className="pricing_item_header">
+                  <h3>Business Plan</h3>
+                  <h4>
+                    <sup>$</sup>
+                    "15"
+                    <span> / month</span>
+                  </h4>
+                </div>
+                <ul>
+                  <li>
+                    <BsDot />
+                    <span>Up to 50 MB file uploads</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Unlimited projects</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Email support</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Ads removed</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Whiteboards</span>
+                  </li>
+                  <li>
+                    <BsDot />
+                    <span>Priority support 24/7</span>
+                  </li>
+                </ul> 
+                <div className="pricing_button"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* PRICING END */}
     </div>
   )
