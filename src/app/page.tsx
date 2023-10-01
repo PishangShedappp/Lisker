@@ -99,7 +99,7 @@ export default function Page() {
         <div className="pricing_container" data-aos='fade-up'>
           <div className="pricing_header">
             <h2>Our Pricing</h2>
-            <p>If you're new here you can compare what we include in every plan below</p>
+            <p>If you&apos;re new here you can compare what we include in every plan below</p>
           </div>
           <div className="pricing_row">
             <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
