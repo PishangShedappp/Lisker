@@ -2,6 +2,7 @@
   --main-background-color: #ffffff;
   --verified-background-color: #cfcfcf;
   --primary-color: #0037ff;
+  --rgb-primary: 0, 55, 255;
   --primary-color-hover: #002fda;
   --border-color: #ddd;
   --font: #252e3c;
@@ -16,6 +17,8 @@
   --error-color: #d0342c;
   --error-bg-color: #ffa8a3;
   --sidebar-background: #eeeeee;
+  --pricing-header-color: 238, 238, 238;
+  --pricing-shadow: 108, 117, 125;
   --sidebar: #ffffff;
   --active-font-setting: #ffffff;
   --mid-font: rgba(94, 91, 91, 0.6);
@@ -27,6 +30,8 @@
   --font: #fbfbfb;
   --light-font: #dbdbdb;
   --sidebar-background: #181a1e;
+  --pricing-header-color: 24, 26, 30;
+  --pricing-shadow: 62, 63, 65;
   --sidebar: #111314;
   --active-font-setting: #111314;
   --mid-font: rgba(255, 255, 255, 0.6);

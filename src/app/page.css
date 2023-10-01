@@ -164,7 +164,7 @@ body {
     letter-spacing: 1px;
     font-weight: 500;
     transition: 0.5s;
-    color: var(--font);
+    color: var(--white);
     background: var(--primary-color);
 }
 
@@ -310,22 +310,87 @@ body {
 
 .pricing .pricing_container .pricing_row .pricing_item_container .pricing_item {
     padding: 60px 40px;
-    box-shadow: 0 3px 20px -2px;
+    box-shadow: 0 3px 20px -2px rgba(var(--pricing-shadow), 1);
     background: var(--main-background-color);
     height: 100%;
     display: flex;
     flex-direction: column;
-    border: 4px solid var(--font);
     border-radius: 10px;
     overflow: hidden;
 }
 
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item.featured {
+    border: 4px solid;
+    border-color: var(--primary-color);
+}
+
 .pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_item_header {
-    background: url(../../public/pricing-bg.jpg) center center;
+    background: linear-gradient(rgba(var(--pricing-header-color), 0.7), rgba(var(--pricing-header-color), 0.7)), url(../../public/pricing-bg.jpg) center center;
     background-size: cover;
     text-align: center;
     padding: 40px;
     margin: -60px -40px 0;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item.featured .pricing_item_header {
+    background: linear-gradient(rgba(var(--rgb-primary), 0.7), rgba(var(--rgb-primary), 0.7)), url(../../public/pricing-bg.jpg) center center;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_item_header h3 {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 36px;
+    color: var(--white);
+    line-height: 1.2;
+    margin-top: 0;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_item_header h4 {
+    font-size: 48px;
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_item_header h4 span {
+    color: var(--mid-font);
+    font-size: 24px;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul {
+    padding: 30px 0;
+    list-style: none;
+    color: var(--font);
+    text-align: left;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul li.na {
+    color: var(--mid-font);
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul li.na svg {
+    color: var(--mid-font);
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul li.na span {
+    text-decoration: line-through;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item ul li svg {
+    color: var(--primary-color);
+    font-size: 36px;
+    padding-right: 3px;
+    line-height: 0;
 }
 /** PRICING END **/
 

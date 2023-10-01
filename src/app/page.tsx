@@ -108,7 +108,7 @@ export default function Page() {
                   <h3>Free Plan</h3>
                   <h4>
                     <sup>$</sup>
-                    "0"
+                    0
                     <span> / month</span>
                   </h4>
                 </div>
@@ -141,13 +141,13 @@ export default function Page() {
                 <div className="pricing_button"></div>
               </div>
             </div>
-            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='350'>
               <div className="pricing_item featured">
                 <div className="pricing_item_header">
                   <h3>Premium Plan</h3>
                   <h4>
                     <sup>$</sup>
-                    "7"
+                    7
                     <span> / month</span>
                   </h4>
                 </div>
@@ -180,13 +180,13 @@ export default function Page() {
                 <div className="pricing_button"></div>
               </div>
             </div>
-            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='500'>
               <div className="pricing_item">
                 <div className="pricing_item_header">
                   <h3>Business Plan</h3>
                   <h4>
                     <sup>$</sup>
-                    "15"
+                    15
                     <span> / month</span>
                   </h4>
                 </div>
