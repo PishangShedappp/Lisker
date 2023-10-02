@@ -43,14 +43,14 @@ export default function Page() {
       <div className='hero'>
         <div className="hero_container">
           <div className="hero_row">
-            <div className="hero_left" data-aos='fade-up' data-aos-delay='200'>
+            <div className="hero_left" data-aos='fade-up' data-aos-delay='200' data-aos-once="true">
               <h1>Simple Solutions For Your Work</h1>
               <h2>Lisker make it simple and easy with affordable price</h2>
               <div className="hero_left_button">
                 <Link href='/auth/register'>Sign Up</Link>
               </div>
             </div>
-            <div className="hero_right" data-aos='fade-up' data-aos-delay='200'>
+            <div className="hero_right" data-aos='fade-up' data-aos-delay='200' data-aos-once="true">
               <img src='/undraw_Make_it_rain_re_w9pc.svg' alt="" className='ill'/>
             </div>
           </div>
@@ -60,30 +60,30 @@ export default function Page() {
       {/* FEATURES START */}
       <div className="features">
         <div className="features_container">
-          <div className='line_features' data-aos='zoom-out'></div>
+          <div className='line_features' data-aos='zoom-out' data-aos-once="true"></div>
           <div className="features_row">
-            <div className="features_item_container" data-aos='zoom-out'>
+            <div className="features_item_container" data-aos='zoom-out' data-aos-once="true">
               <div className="features_item">
                 <MdOutlineAttachMoney className='features_icon'/>
                 <h4>Affordable</h4>
                 <p>It&apos;s suitable for anyone who want to save their money and limit some budget.</p>
               </div>
             </div>
-            <div className="features_item_container" data-aos='zoom-out'>
+            <div className="features_item_container" data-aos='zoom-out' data-aos-once="true">
               <div className="features_item">
                 <FaUserGraduate className='features_icon'/>
                 <h4>User Friendly</h4>
                 <p>The UI is user friendly that means it&apos;s easy to learn for any age either young or old.</p>
               </div>
             </div>
-            <div className="features_item_container" data-aos='zoom-out'>
+            <div className="features_item_container" data-aos='zoom-out' data-aos-once="true">
               <div className="features_item">
                 <BsFillShieldFill className='features_icon'/>
                 <h4>Security</h4>
                 <p>Secure your personal or group project notes from any other unauthorized person.</p>
               </div>
             </div>
-            <div className="features_item_container" data-aos='zoom-out'>
+            <div className="features_item_container" data-aos='zoom-out' data-aos-once="true">
               <div className="features_item">
                 <FaFeatherAlt className='features_icon'/>
                 <h4>Lightweight</h4>
@@ -96,16 +96,16 @@ export default function Page() {
       {/* FEATURES END */}
       {/* PRICING START */}
       <div className="pricing">
-        <div className="pricing_container" data-aos='fade-up'>
+        <div className="pricing_container" data-aos='fade-up' data-aos-once="true">
           <div className="pricing_header">
             <h2>Our Pricing</h2>
             <p>If you&apos;re new here you can compare what we include in every plan below</p>
           </div>
           <div className="pricing_row">
-            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200'>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='200' data-aos-once="true">
               <div className="pricing_item">
                 <div className="pricing_item_header">
-                  <h3>Free Plan</h3>
+                  <h3>Individual Plan</h3>
                   <h4>
                     <sup>$</sup>
                     0
@@ -138,10 +138,12 @@ export default function Page() {
                     <span>Priority support 24/7</span>
                   </li>
                 </ul> 
-                <div className="pricing_button"></div>
+                <div className="pricing_button">
+                  <Link href='/auth/register' className='pricing_in_button'>Sign Up</Link>
+                </div>
               </div>
             </div>
-            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='350'>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='350' data-aos-once="true">
               <div className="pricing_item featured">
                 <div className="pricing_item_header">
                   <h3>Premium Plan</h3>
@@ -177,10 +179,12 @@ export default function Page() {
                     <span>Priority support 24/7</span>
                   </li>
                 </ul> 
-                <div className="pricing_button"></div>
+                <div className="pricing_button">
+                  <Link href='/auth/register' className='pricing_in_button'>Sign Up</Link>
+                </div>
               </div>
             </div>
-            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='500'>
+            <div className="pricing_item_container" data-aos='zoom-in' data-aos-delay='500' data-aos-once="true">
               <div className="pricing_item">
                 <div className="pricing_item_header">
                   <h3>Business Plan</h3>
@@ -216,13 +220,31 @@ export default function Page() {
                     <span>Priority support 24/7</span>
                   </li>
                 </ul> 
-                <div className="pricing_button"></div>
+                <div className="pricing_button">
+                  <Link href='/auth/register' className='pricing_in_button'>Sign Up</Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       {/* PRICING END */}
+      {/* FOOTER START */}
+      {/*
+      <div className="footer">
+        <div className="newsletter_social">
+          <div className="newsletter">
+            <h3>Subscribe to newsletter</h3>
+            <p className="deals">Weekly ad, offers, features update and more.</p>
+            <form>
+              <input type="text" placeholder='Enter email address'/>
+            </form>
+            <div className="social"></div>
+          </div>
+        </div>
+      </div>
+      */}
+      {/* FOOTER END */}
     </div>
   )
 }

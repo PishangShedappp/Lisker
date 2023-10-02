@@ -274,6 +274,7 @@ body {
 }
 
 .pricing .pricing_container .pricing_header {
+    padding-top: 100px;
     text-align: center;
     padding-bottom: 40px;
 }
@@ -392,7 +393,45 @@ body {
     padding-right: 3px;
     line-height: 0;
 }
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_button {
+    margin-top: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_button .pricing_in_button {
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.3s;
+    border: 1px solid var(--primary-color);
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item .pricing_button .pricing_in_button:hover {
+    color: var(--font);
+    background: var(--primary-color);
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item.featured .pricing_button .pricing_in_button {
+    color: var(--font);
+    background: var(--primary-color);
+}
+
+.pricing .pricing_container .pricing_row .pricing_item_container .pricing_item.featured .pricing_button .pricing_in_button:hover {
+    background: var(--primary-color-hover);
+}
 /** PRICING END **/
+
+
+
+/** FOOTER START **/
+
+/** FOOTER END **/
 
 
 /** RESPONSIVE THINGS **/
