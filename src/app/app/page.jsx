@@ -49,6 +49,10 @@ function App() {
       if (sUser) {
         return;
       } else {
+        firebase.auth().signOut()
+        if (window) {
+          localStorage.clear();
+        }
         router.push('/auth/login')
       }
     })
@@ -81,7 +85,7 @@ function App() {
     firebase.auth().signOut()
     if (window) {
       localStorage.clear();
-  }
+    }
     router.push('/auth/login')
   }
 

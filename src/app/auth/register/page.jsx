@@ -39,6 +39,10 @@ function Login() {
             if (sUser) {
                 router.push('/auth/login')
             } else {
+                firebase.auth().signOut()
+                if (window) {
+                    localStorage.clear();
+                }
                 return;
             }
         })
