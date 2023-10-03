@@ -37,20 +37,14 @@ function Login() {
                 router.push('/app')
                 return;
             }
-            if (sUser) {
-                return;
-            } else {
+            if (!sUser) {
                 firebase.auth().signOut()
                 if (window) {
                     localStorage.clear();
                 }
-                router.push('/auth/login')
-            }
+                return;
+            } 
         })
-        if (user?.emailVerified === true) {
-            router.push('/app')
-            return;
-        }
         document.title = "Lisker - Login";
     }, [])
 
