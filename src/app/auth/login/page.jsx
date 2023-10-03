@@ -33,9 +33,15 @@ function Login() {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(sUser) {
-            if (user?.emailVerified === true) {
-                router.push('/app')
-                return;
+            if (user) {
+                if (user?.emailVerified === true) {
+                    router.push('/app')
+                    return;
+                }
+                if (user?.emailVerified === false) {
+                    setEMessage("Please verify your email before login");
+                    setVError(true);
+                }
             }
             if (!sUser) {
                 firebase.auth().signOut()
@@ -43,7 +49,7 @@ function Login() {
                     localStorage.clear();
                 }
                 return;
-            } 
+            }
         })
         document.title = "Lisker - Login";
     }, [])
