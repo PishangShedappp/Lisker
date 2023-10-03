@@ -33,7 +33,7 @@ function Login() {
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function(sUser) {
-            if (user) {
+            if (sUser) {
                 if (user?.emailVerified === true) {
                     router.push('/app')
                     return;

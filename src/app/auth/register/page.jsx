@@ -37,7 +37,14 @@ function Login() {
                 return;
             }
             if (sUser) {
-                router.push('/auth/login')
+                if (user?.emailVerified === true) {
+                    router.push('/app')
+                    return;
+                }
+                if (user?.emailVerified === false) {
+                    router.push('/auth/login')
+                    return;
+                }
             } else {
                 firebase.auth().signOut()
                 if (window) {
