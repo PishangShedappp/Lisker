@@ -51,7 +51,7 @@ export default function Page() {
               </div>
             </div>
             <div className="hero_right" data-aos='fade-up' data-aos-delay='200' data-aos-once="true">
-              <img src='/undraw_Make_it_rain_re_w9pc.svg' alt="" className='ill'/>
+              <img src='/undraw_make_it_rain_re_w9pc.svg' alt="" className='ill'/>
             </div>
           </div>
         </div>
