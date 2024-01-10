@@ -251,6 +251,81 @@ body {
     margin-bottom: 10px;
     color: var(--font);
 }
+
+.content main .dashboard_cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.content main .dashboard_card {
+    position: relative;
+    background: var(--verified-background-color);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.content main .dashboard_card .dashboard_numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.content main .dashboard_card .dashboard_cardName {
+    color: var(--font);
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+.content main .dashboard_details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+}
+
+.content main .dashboard_details .dashboard_recentFiles {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--verified-background-color);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.content main .dashboard_details .dashboard_cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.content main .dashboard_details .dashboard_cardHeader h2 {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.content main .dashboard_details .dashboard_cardHeader .va_btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--primary-color);
+    text-decoration: none;
+    color: var(--font);
+    border-radius: 6px;
+}
+
+.content main .dashboard_details table {
+    width: 100%;
+    margin-top: 10px;
+}
 /** MAIN BODY END **/
 
 

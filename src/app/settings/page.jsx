@@ -42,6 +42,7 @@ function Settings() {
         querySnapshot.forEach((doc) => {
             setProfile(doc.data().photoUrl)
             setFUsername(doc.data().name)
+            setUsername(doc.data().name)
         });
     });
 
@@ -80,8 +81,49 @@ function Settings() {
         router.push('/auth/login')
     }
 
+    async function saveProfilePicture() {
+        if (selectedProfile) {
+            const strRef = firebase.storage().ref();
+            const uploadTask = strRef.child(`profile/${selectedProfile.name}`).put(selectedProfile);
+
+            uploadTask.on('state_changed', 
+                (snapshot) => {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                console.log('Upload is paused');
+                                break;
+                            case firebase.storage.TaskState.RUNNING: // or 'running'
+                                console.log('Upload is running');
+                                break;
+                        }
+                    }, 
+                (error) => {
+                    // Handle unsuccessful uploads
+                }, 
+                () => {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        firebase.firestore().collection("users").doc(getUid).update({
+                            photoUrl: downloadURL
+                        })
+                    });
+                    router.refresh();
+                }
+            );
+        }
+        if (!selectedProfile) {
+            console.log("Returned")
+            return;
+        }
+    }
+
     const saveSettingHandler = () => {
-        if (!userName) {
+        if (!userName || userName == null || userName == "") {
             toast.error(`Input must be filled`, {
                 duration: 3000,
                 position: 'bottom-center'
@@ -92,6 +134,7 @@ function Settings() {
                 name: userName
             })
             localStorage.setItem("name", JSON.stringify(userName))
+            saveProfilePicture();
             toast.success(`Change saved successfully`, {
                 duration: 3000,
                 position: 'bottom-center'

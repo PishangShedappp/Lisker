@@ -178,6 +178,104 @@ function App() {
           <div className='header'>
             <h1>Dashboard</h1>
           </div>
+          <div className="dashboard_cardBox">
+            <div className="dashboard_card">
+              <div>
+                <div className="dashboard_numbers">1,504</div>
+                <div className="dashboard_cardName">Daily Views</div>
+              </div>
+              <div className="dashboard_icon"></div>
+            </div>
+
+            <div className="dashboard_card">
+              <div>
+                <div className="dashboard_numbers">80</div>
+                <div className="dashboard_cardName">Sales</div>
+              </div>
+              <div className="dashboard_icon"></div>
+            </div>
+
+            <div className="dashboard_card">
+              <div>
+                <div className="dashboard_numbers">284</div>
+                <div className="dashboard_cardName">Comments</div>
+              </div>
+              <div className="dashboard_icon"></div>
+            </div>
+
+            <div className="dashboard_card">
+              <div>
+                <div className="dashboard_numbers">$7,842</div>
+                <div className="dashboard_cardName">Earning</div>
+              </div>
+              <div className="dashboard_icon"></div>
+            </div>
+          </div>
+
+          <div className="dashboard_details">
+            <div className="dashboard_recentFiles">
+              <div className="dashboard_cardHeader">
+                <h2>Recent Files</h2>
+                <a href="" className='va_btn'>View All</a>
+              </div>
+
+              <table>
+                <thead>
+                  <tr>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Payment</td>
+                    <td>Status</td>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Star Refrigerator</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span className='d_status delivered'>Delivered</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>Dell Laptop</td>
+                    <td>$110</td>
+                    <td>Due</td>
+                    <td><span className="d_status pendiing"></span></td>
+                  </tr>
+
+                  <tr>
+                    <td>Apple Watch</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span className="d_status return">Return</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>Adidas Shoes</td>
+                    <td>$629</td>
+                    <td>Due</td>
+                    <td><span className="d_status inProgress">In Progress</span></td>
+                  </tr>   
+                </tbody>
+              </table>
+            </div>
+
+            <div className='d_recentCustomers'>
+              <div className="cardheader">
+                <h2>Recent Customers</h2>
+              </div>
+
+              <table>
+                <tr>
+                  <td width="60px">
+                    <div className="imgBx"><img src="" alt="" /></div>
+                  </td>
+                  <td><h4>Akmal <br /> <span>Malaysia</span></h4></td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </main>
         {/* MAIN BODY END */}
       </div>
