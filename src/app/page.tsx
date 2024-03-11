@@ -230,20 +230,19 @@ export default function Page() {
       </div>
       {/* PRICING END */}
       {/* FOOTER START */}
-      {/*
       <div className="footer">
-        <div className="newsletter_social">
-          <div className="newsletter">
-            <h3>Subscribe to newsletter</h3>
-            <p className="deals">Weekly ad, offers, features update and more.</p>
-            <form>
-              <input type="text" placeholder='Enter email address'/>
-            </form>
-            <div className="social"></div>
+        <div className="footer-row">
+          <div className="footer-col">
+            <h4>Info</h4>
+            <ul className="links">
+              <li><Link href='/'>Home</Link></li>
+              <li><Link href='/'>Home</Link></li>
+              <li><Link href='/auth/register'>Sign Up</Link></li>
+              <li><Link href='/auth/login'>Login</Link></li>
+            </ul>
           </div>
         </div>
       </div>
-      */}
       {/* FOOTER END */}
     </div>
   )
