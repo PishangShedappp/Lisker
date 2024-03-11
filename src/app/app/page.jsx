@@ -27,11 +27,13 @@ function App() {
   const [profile, setProfile] = useState("");
   const [dName, setDName] = useState();
   
-  var pData = firebase.firestore().collection("users").get(getUid).then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      setProfile(doc.data().photoUrl)
+  function getPhoto() {
+    var pData = firebase.firestore().collection("users").get(getUid).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        setProfile(doc.data().photoUrl)
+      });
     });
-  });
+  }
 
   function nData() {
     firebase.firestore().collection("users").get(getUid).then((querySnapshot) => {
@@ -60,6 +62,7 @@ function App() {
         firebase.auth().signOut()
         router.push('/auth/login')
     }
+    getPhoto()
     nData()
     document.title = "Lisker - App";
   })

@@ -52,7 +52,7 @@ function Login() {
             }
         })
         document.title = "Lisker - Login";
-    }, [])
+      })
 
     const eyeHandler = () => {
         if (show === true) {
